@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-s9%ivju_w8aemlai+s6+j0x0g!vaqa#_!vk205d@zgk*1x#=og
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,11 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_yasg',
+    'corsheaders',
     'project',
     
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,6 +53,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ALLOW_ALL_ORIGINS = True  # vaqtinchalik sinov uchun, xavfsiz emas
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # React Vite frontend porti
 ]
 
 ROOT_URLCONF = 'config.urls'
